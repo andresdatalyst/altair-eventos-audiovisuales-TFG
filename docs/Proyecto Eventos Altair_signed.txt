@@ -1,0 +1,96 @@
+Proyecto Eventos Altair
+Proyecto Final Andrés Pérez
+
+Introducción
+
+Una gran empresa se encarga de la realización audiovisual de diferentes eventos alrededor
+de España, para ello necesita una página web donde contratará a diferentes empresas
+dependiendo de su localización. Cada empresa tendrá sus propios trabajadores encargados
+del montaje de dicho evento. También se contará con material conjunto para realizar cada
+evento, como pueden ser cables de audio, de vídeo, cámaras, micrófonos…
+
+Las personas que responden por la empresa organizadora son los productores, que son
+los que crearán los eventos.
+
+Requisitos de información
+
+● UsersAccounts: username, password, email, active.
+● Roles: roleName, roleDescription.
+● Menus: label,action.
+● Productores:name, surname, phone, dni, birthday, useraccount.
+● Admin:name, surname, phone, dni, birthday, useraccount.
+● Trabajadores: name, surname, phone, dni, birthday, categoria, user account.
+● Empresa Trabajadora: nombre, provincia, email, postal Code, CIF, phone,
+
+dirección.
+
+● Localizaciones: ciudad, dirección, postal Code, estadio.
+● Materiales audiovisuales: nombre Material, cantidad
+● Evento: fecha, horaInicio, horaFin.
+
+*Algunas relaciones no están puestas en requisitos de información, ver diagrama para saber
+más.
+
+Roles
+
+Los roles serán: productor, jefe de empresa, trabajador y administrador.
+
+- El productor podrá crear el evento, organizar el material para el mismo, añadir
+
+localizaciones y añadir o eliminar una empresa en la aplicación.
+- El jefe de empresa, podrá crear y modificar a sus trabajadores.
+- El trabajador sólo verá los eventos a los que asistirá y su propio perfil.
+- El administrador tendrá el control total de la aplicación.
+
+Menus
+
+- Productor: Localizaciones, Eventos, Materiales Audiovisuales,
+
+-
+
+Evento_Has_Materiales, Empresa_Trabajadora.
+Jefe de Empresa: Eventos(solo ver), localizaciones(solo ver, para saber donde será
+el evento), empresa_trabajadora(solo verá su empresa y la podrá modificar, no
+puede crear o borrar), trabajadores(crud de solo sus trabajadores).
+
+-
+
+Trabajadores: Eventos(solo ver), Trabajadores(solo se verá su perfil).
+
+- Admin: Admin,Productores,Trabajadores,Empresa_Trabajadora,Eventos,
+
+Localizaciones,Materiales Audiovisuales, Evento_Has_Materiales.
+
+Diagrama
+
+*Dar Zoom para ver mejor, el diagrama se enviará aparte.
+
+Funcionalidades
+
+● La Empresa trabajadora es la que organiza a sus trabajadores, los cuales tienen
+diferentes categorías, el jefe es el único que puede modificar los datos de sus
+trabajadores.
+
+● No puede haber 2 eventos el mismo día con la misma empresa pero si con otra
+
+empresa.
+
+● No puedes crear un evento si el nombre es el mismo que uno que exista en base de
+
+datos
+
+● El productor es el único junto al admin que puede crear un evento.
+● No se puede crear un evento si la fecha de montaje es después de la del evento y  la
+
+fecha de desmontaje sea antes del evento.
+
+● El trabajador sólo verá los eventos a los que asistirá y su propio perfil.
+● No se podrá eliminar una localización si hay un evento futuro
+● No se podrá eliminar una empresa si tiene un evento futuro
+● El productor solo verá sus datos y no puede eliminarse, podrá ver las empresas y
+
+sus trabajadores pero no podrá editarlos o borrarlos
+
+● No podrá crearse un usuario si existe uno con el mismo nombre en la base de datos.
+
+

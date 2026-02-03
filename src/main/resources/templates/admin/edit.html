@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h1 th:text="${titulo}"></h1>
+
+				<div th:object="${admin}">
+					<!--  <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+						<li th:each="error:${#fields.errors('*')}" th:text="${error}"></li>
+					</ul>-->
+				</div>
+				<form th:action="@{/admin/saveEdit}" th:object="${admin}"
+					method="post" enctype="multipart/form-data">
+					<!-- necesario para subir imagenes(upload de archivos) -->
+
+
+					<!-- <input type="hidden" th:field="*{id}" /> con SessionAtributes no es necesario -->
+					<input type="hidden" th:field="*{id}" /> <input type="hidden"
+						th:field="*{userAccount}" />
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nombre</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{name}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+						</div>
+					</div>
+
+
+					<div class="form-group row" style="margin-top: 10px">
+						<label class="col-sm-2 col-form-label">Apellidos</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{surname}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row" style="margin-top: 10px">
+						<label class="col-sm-2 col-form-label">Telefono</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{phone}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row" style="margin-top: 10px">
+						<label class="col-sm-2 col-form-label">DNI</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{dni}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+						</div>
+					</div>
+					<div class="form-group row" style="margin-top: 10px">
+						<label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+						<div class="col-sm-5">
+							<input type="date" th:field="*{birthday}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></small>
+						</div>
+					</div>
+
+
+
+					<div>
+						<input type="submit" value="Guardar cambios"
+							class="btn btn-primary" style="margin-top: 10px"
+							th:if="${admin.id != null}" />
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+
+					<!-- sec:authorize="hasRole('ROLE_ADMIN')" solo se muestra el botón si es Admin -->
+					<a th:href="@{/eventHasMaterial/create}"
+						class="btn btn-primary btx-xs">Crear EventHasMaterial</a>
+				</h4>
+
+			</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>Nombre del Evento</th>
+						<th>Nombre del Material</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+						<th>Detalle</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="eventHasMaterial: ${eventHasMaterials}">
+
+						<td th:text="${eventHasMaterial.event.eventName}"></td>
+						<td th:text="${eventHasMaterial.audiovisualMaterial.materialName}"></td>
+						<td><a class="btn btn-primary btn-xs"
+							th:href="@{/eventHasMaterial/edit/} + ${eventHasMaterial.id}">Editar
+								EventHasMaterial</a></td>
+						<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+						<td><a class="btn btn-danger btn-xs"
+							th:href="@{/eventHasMaterial/delete/} + ${eventHasMaterial.id}"
+							onclick="return confirm('Estás seguro que quieres eliminar el eventHasMaterial?.');">Eliminar
+								EventHasMaterial</a></td>
+						<td><a class="btn btn-success btn-xs"
+							th:href="@{/eventHasMaterial/detail/} + ${eventHasMaterial.id}">Detalle
+								EventHasMaterial</a></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+			<nav th:replace="paginator-nav :: paginator"></nav>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

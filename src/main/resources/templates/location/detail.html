@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<img class="img-thumbnail rounded float-start"
+					style="max-width: 25%;"
+					th:src="@{'~/uploads/locations/' + ${location.photo}}"
+					th:alt="${location.photo}" />
+
+
+				<table class="table table-bordered border-dark">
+
+					<tbody>
+
+
+						<tr>
+							<th class="w-25 text-center table-success">Ciudad:</th>
+							<td class="table-info" th:text="${location.city}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Direccion:</th>
+							<td class="table-info" th:text="${location.direction}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Codigo Postal:</th>
+							<td class="table-info" th:text="${location.postalCode}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Nombre de la
+								Localizacion:</th>
+							<td class="table-info" th:text="${location.locationName}"></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

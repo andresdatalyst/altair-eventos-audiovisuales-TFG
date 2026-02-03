@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h1 th:text="${titulo}"></h1>
+
+
+				<form th:action="@{/location/save}" th:object="${location}"
+					method="post" enctype="multipart/form-data">
+					<!-- necesario para subir imagenes(upload de archivos) -->
+
+
+					<div>
+						<input type="hidden" th:field="*{id}" />
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Nombre
+								Localizacion</label>
+							<div class="col-sm-5">
+								<input type="text" th:field="*{locationName}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('locationName')}"
+									th:errors="*{locationName}"></small>
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label class="col-sm-2 col-form-label">Ciudad</label>
+							<div class="col-sm-5">
+								<input type="text" th:field="*{city}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row" style="margin-top: 10px">
+							<label class="col-sm-2 col-form-label">Direcci&oacuten</label>
+							<div class="col-sm-5">
+								<input type="text" th:field="*{direction}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('direction')}"
+									th:errors="*{direction}"></small>
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label class="col-sm-2 col-form-label">C&oacutedigo
+								postal</label>
+							<div class="col-sm-5">
+								<input type="text" th:field="*{postalCode}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('postalCode')}"
+									th:errors="*{postalCode}"></small>
+							</div>
+						</div>
+
+
+						<div class="form-group row" style="margin-top: 10px">
+							<label for="file" class="col-sm-2 col-form-label">Foto</label>
+							<div class="col-sm-6">
+								<input type="file" name="file" class="form-control"> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}"></small>
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<input type="submit" value="Crear" class="btn btn-primary"
+						style="margin-top: 10px" th:if="${location.id == null}" />
+
+					<div>
+						<input type="submit" value="Guardar cambios"
+							class="btn btn-primary" style="margin-top: 10px"
+							th:if="${location.id != null}" />
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

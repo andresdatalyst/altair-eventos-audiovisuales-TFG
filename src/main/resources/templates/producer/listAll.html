@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{/producer/create}" class="btn btn-primary btx-xs"
+						style="margin-bottom: 10px" sec:authorize="hasRole('ROLE_ADMIN')">Crear
+						Productor</a>
+
+					<form th:action="@{/producer/listAll}" method="get">
+						<div class="input-group mb-3">
+							<button class="btn btn-outline-primary" type="submit"
+								id="button-addon1">Buscar</button>
+							<input type="text" name="busqueda" class="form-control"
+								placeholder="Busqueda por nombre"
+								aria-describedby="button-addon1">
+						</div>
+
+					</form>
+
+
+				</h4>
+
+			</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Apellidos</th>
+						<th>Editar</th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+						<th>Detalle</th>
+						<th>UserAccount</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producer: ${producers}">
+						<td th:text="${producer.name}"></td>
+						<td th:text="${producer.surname}"></td>
+						<td><a class="btn btn-primary btn-xs"
+							th:href="@{/producer/edit/} + ${producer.id}">Editar
+								Productor</a></td>
+						<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							class="btn btn-danger btn-xs"
+							th:href="@{/producer/delete/} + ${producer.id}"
+							onclick="return confirm('Estás seguro que quieres eliminar al productor?.');">Eliminar
+								Productor</a></td>
+						<td><a class="btn btn-success btn-xs"
+							th:href="@{/producer/detail/} + ${producer.id}">Detalle
+								Productor</a></td>
+						<td><a class="btn btn-warning btn-xs"
+							th:href="@{/userAccount/verCuenta/} + ${producer.userAccount.id}">Configurar
+								UserAccount</a></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+			<nav sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_BOSS')"
+				th:replace="paginator-nav :: paginator"></nav>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+
+					<!-- sec:authorize="hasRole('ROLE_ADMIN')" solo se muestra el botón si es Admin -->
+					<a th:href="@{/location/create}" class="btn btn-primary btx-xs">Crear
+						Localizacion</a>
+				</h4>
+
+			</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>Ciudad</th>
+						<th>Nombre Localizacion</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+						<th>Detalle</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="location: ${listLocations}">
+
+						<td th:text="${location.city}"></td>
+						<td th:text="${location.locationName}"></td>
+						<td><a class="btn btn-primary btn-xs"
+							th:href="@{/location/edit/} + ${location.id}">Editar
+								Localizacion</a></td>
+						<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+						<td><a class="btn btn-danger btn-xs"
+							th:href="@{/location/delete/} + ${location.id}"
+							onclick="return confirm('Estás seguro que quieres eliminar la localizacion?.');">Eliminar
+								Localizacion</a></td>
+						<td><a class="btn btn-success btn-xs"
+							th:href="@{/location/detail/} + ${location.id}">Detalle
+								Localizacion</a></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

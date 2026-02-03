@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{/hardworkingCompany/create}"
+						class="btn btn-primary btx-xs"
+						sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')">Crear
+						Empresa Trabajadora</a>
+				</h4>
+
+				<div>
+					<div class="row">
+						<div class="col">
+							<form th:action="@{/hardworkingCompany/listAll}" method="get">
+								<div class="input-group mb-3">
+									<button class="btn btn-outline-primary " type="submit"
+										id="button-addon1">Buscar</button>
+									<input type="text" name="busqueda" class="form-control"
+										placeholder="Busqueda por nombre"
+										aria-describedby="button-addon1">
+
+								</div>
+							</form>
+						</div>
+						<div class="col">
+							<form th:action="@{/hardworkingCompany/listAll}" method="get">
+								<div class="input-group mb-3">
+									<button class="btn btn-outline-primary " type="submit"
+										id="button-addon1">Buscar</button>
+									<input type="text" name="province" class="form-control"
+										placeholder="Busqueda por provincia"
+										aria-describedby="button-addon1">
+
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Nombre Empresa</th>
+							<th>Provincia</th>
+							<th>Editar</th>
+							<th sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')">Eliminar</th>
+							<th>Detalle</th>
+							<th>Lista Trabajadores de la Empresa</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="hardworkingCompany: ${hardworkingCompanys}">
+
+							<td th:text="${hardworkingCompany.name}"></td>
+							<td th:text="${hardworkingCompany.province}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/hardworkingCompany/edit/} + ${hardworkingCompany.id}">Editar
+									Empresa</a></td>
+							<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+							<td sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"><a
+								class="btn btn-danger btn-xs"
+								th:href="@{/hardworkingCompany/delete/} + ${hardworkingCompany.id}"
+								onclick="return confirm('Estás seguro que quieres eliminar a la Empresa Trabajadora?.');">Eliminar
+									Empresa</a></td>
+							<td><a class="btn btn-success btn-xs"
+								th:href="@{/hardworkingCompany/detail/} + ${hardworkingCompany.id}">Detalle	Empresa</a></td>
+							<td><a class="btn btn-warning btn-xs"
+								th:href="@{/hardworkingCompany/worker/} + ${hardworkingCompany.id}">Trabajadores</a></td>
+
+						</tr>
+					</tbody>
+				</table>
+				<nav sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"
+					th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+
+
+		<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

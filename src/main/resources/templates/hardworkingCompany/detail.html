@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<img class="img-thumbnail rounded float-start"
+					style="max-width: 25%;"
+					th:src="@{'~/uploads/hardworkingCompanys/' + ${hardworkingCompany.photo}}"
+					th:alt="${hardworkingCompany.photo}" />
+
+
+
+				<table class="table table-bordered border-dark">
+
+					<tbody>
+
+
+						<tr>
+							<th class="w-25 text-center table-success">Nombre de la
+								Empresa:</th>
+							<td class="table-info" th:text="${hardworkingCompany.name}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Provincia:</th>
+							<td class="table-info" th:text="${hardworkingCompany.province}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Email de la
+								Empresa:</th>
+							<td class="table-info" th:text="${hardworkingCompany.email}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Direccion:</th>
+							<td class="table-info" th:text="${hardworkingCompany.direccion}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Codigo Postal:</th>
+							<td class="table-info" th:text="${hardworkingCompany.postalCode}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Cif:</th>
+							<td class="table-info" th:text="${hardworkingCompany.cif}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Telefono de
+								Contato:</th>
+							<td class="table-info" th:text="${hardworkingCompany.phone}"></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

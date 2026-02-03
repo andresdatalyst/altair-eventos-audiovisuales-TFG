@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{/menu/create}" class="btn btn-primary btx-xs">Crear
+						Menu</a>
+				</h4>
+
+			</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>Label</th>
+						<th>Action</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+						<th>Detalle</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="menu: ${listMenus}">
+
+						<td th:text="${menu.label}"></td>
+						<td th:text="${menu.action}"></td>
+						<td><a class="btn btn-primary btn-xs"
+							th:href="@{/menu/edit/} + ${menu.id}">Editar menu</a></td>
+						<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+						<td><a class="btn btn-danger btn-xs"
+							th:href="@{/menu/delete/} + ${menu.id}"
+							onclick="return confirm('Estás seguro que quieres eliminar al menu?.');">Eliminar
+								menu</a></td>
+						<td><a class="btn btn-success btn-xs"
+							th:href="@{/menu/detail/} + ${menu.id}">Detalle menu</a></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+			<nav th:replace="paginator-nav :: paginator"></nav>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+
+				<table class="table table-bordered border-dark">
+
+					<tbody>
+
+
+						<tr>
+							<th class="w-25 text-center table-success">Nombre:</th>
+							<td class="table-info" th:text="${admin.name}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Apellidos:</th>
+							<td class="table-info" th:text="${admin.surname}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Telefono:</th>
+							<td class="table-info" th:text="${admin.phone}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Fecha de
+								Nacimiento:</th>
+							<td class="table-info" th:text="${admin.birthday}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">DNI:</th>
+							<td class="table-info" th:text="${admin.dni}"></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

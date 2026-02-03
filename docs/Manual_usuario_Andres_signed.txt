@@ -1,0 +1,432 @@
+2022 
+
+Proyecto Altair Eventos 
+
+MANUAL DE USUARIO 
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Índice 
+
+Introducción ....................................................................................... 2 
+
+Configuración del entorno ........................................................................ 2 
+
+ ........................................................................................................ 2 
+
+Estructura de paquetes del proyecto. .......................................................... 4 
+
+Mi página web ...................................................................................... 4 
+
+Index .......................................................... ¡Error! Marcador no definido. 
+
+Funcionalidades .................................................................................... 7 
+
+Funcional 1 ....................................................................................... 7 
+
+Funcional 2 ....................................................................................... 8 
+
+Funcional 3 ....................................................................................... 8 
+
+Funcional 4 ....................................................................................... 9 
+
+Funcional 5 ....................................................................................... 9 
+
+Funcional 6 ..................................................................................... 10 
+
+Funcional 7 ..................................................................................... 11 
+
+Funcional 8 ..................................................................................... 11 
+
+Funcional 9 ..................................................................................... 12 
+
+Funcional 10 .................................................................................... 12 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Introducción 
+
+Este documento servirá para dar una idea general del proyecto realizado, uso 
+
+genérico de la aplicación  tanto a nivel usuario como a nivel técnico y ver las funcionalidades 
+más detalladamente realizadas. 
+
+La ruta que utilizaremos es:  
+
+https://altaireventos.andrespr.es/altairAudiovisuales 
+
+Configuración del entorno 
+
+También necesitaremos tomcat en nuestro servidor Linux para nuestro despliegue.  
+
+Tras tener todo el entorno configurado abriremos nuestro id y crearemos nuestro 
+
+proyecto 
+
+File> new> Spring started Proyect. 
+
+Nos saldrá la siguiente ventana: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Después de ponerle el nombre a nuestro proyecto si le damos a next podemos añadir 
+
+compontes que necesitemos a la hora de desarrollarlo. 
+
+Una ventaja que tiene Spring es que no requiere de poner explícitamente las 
+dependencias e instalar los jar manualmente, ya que se pueden añadir a la hora de crear el 
+proyecto automáticamente. 
+
+A diferencia de Eclipse, Spring Tool Suite dispone de un tomcat embebido, y no es 
+
+necesaria su instalación, simplemente ya teniendo el proyecto creado podemos arrancarlo 
+desde esta ventana, y todos los cambios que se harán en el código afectarán en tiempo real a 
+nuestra aplicación. 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Estructura de paquetes del proyecto. 
+
+Ya creados los paquetes y teniendo definido las entidades, debemos de realizar la 
+estructura para la adquisición de los distintos métodos que trabajaran con la base de datos, 
+como por ejemplo: Crear Repositorios, Servicios, Controladores… Y de los distintos 
+controladores hacer uso de estos. 
+
+Mi página web 
+Índex 
+
+Esta será la página home de mi aplicación, con la única opción de loguearse. 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Formulario de Login: 
+
+Tras iniciar sesión, dependiendo del rol se desplegará un menú u otro: 
+
+Ejemplo de Producer: 
+
+Perfil 
+
+Mi aplicación tiene un CRUD en distintitas tablas, con formularios de crear o 
+
+eliminar, y vistas detalle 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Vista ejemplo crear y editar: 
+
+Vista detalle: 
+
+Ejemplo de un listado de una entidad de mi aplicación: 
+
+El cual tendrá diferentes buscadores con filtros, paginación, y botones 
+
+personalizados como ver los trabajadores de una empresa, o ir a la configuración de la cuenta 
+de usuario. 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Funcionalidades 
+
+1.  La Empresa trabajadora es la que organiza a sus trabajadores, los 
+cuales tienen diferentes categorías, el jefe es el único que puede 
+modificar los datos de sus trabajadores. 
+
+2.  No puede haber 2 eventos el mismo día con la misma empresa pero si 
+
+con otra empresa. 
+
+3.  No puedes crear un evento si el nombre es el mismo que uno que 
+
+exista en base de datos 
+
+4.  El productor es el único junto al admin que puede crear un evento. 
+
+5.  No se puede crear un evento si la fecha de montaje es después de la 
+
+del evento y  la fecha de desmontaje sea antes del evento. 
+
+6.  El trabajador sólo verá los eventos a los que asistirá y su propio perfil. 
+
+7.  No se podrá eliminar una localización si hay un evento futuro 
+
+8.  No se podrá eliminar una empresa si tiene un evento futuro 
+
+9.  El productor solo verá sus datos y no puede eliminarse, podrá ver las 
+empresas y sus trabajadores pero no podrá editarlos o borrarlos. 
+
+10.  No podrá crearse un usuario si existe uno con el mismo nombre en la 
+
+base de datos. 
+
+Funcional 1 
+
+Vista: 
+
+Código: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Con sec:authorize cualidad de spring security nos permite según el rol mostrar o no 
+
+un botón. 
+
+Funcional 2 
+
+Vista: 
+
+Código: 
+
+Funcional 3 
+
+Vista:  
+
+Código: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Funcional 4 
+
+Vista:  
+
+Código: 
+
+Funcional 5 
+
+Vista: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Código: 
+
+Funcional 6 
+
+Vista: 
+
+Código: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Funcional 7 
+
+Vista: 
+
+Código: 
+
+Funcional 8 
+
+Código: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+PROYECTO ALTAIR EVENTOS 
+
+Funcional 9 
+
+Vista:  
+
+Código: 
+
+Funcional 10 
+
+Vista:  
+
+Código: 
+
+PROYECTO ALTAIR EVENTOS 
+
+ANDRES PEREZ ROVIRA 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+

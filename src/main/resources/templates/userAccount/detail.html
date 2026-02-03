@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<img class="img-thumbnail rounded float-start"
+					style="max-width: 25%;"
+					th:src="@{'~/uploads/userAccounts/' + ${userAccount.photo}}"
+					th:alt="${userAccount.photo}" />
+
+				<!--  <ul class="list-group">
+
+					<li class="list-group-item" th:text="${userAccount.username}"></li>
+					<li class="list-group-item" th:text="${userAccount.email}"></li>	
+					<li class="list-group-item" th:text="${userAccount.role.roleName}"></li>						
+				</ul>-->
+
+				<table class="table table-bordered border-dark">
+
+					<tbody>
+
+
+						<tr>
+							<th class="w-25 text-center table-success">Username:</th>
+							<td class="table-info" th:text="${userAccount.username}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Email:</th>
+							<td class="table-info" th:text="${userAccount.email}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Rol:</th>
+							<td class="table-info" th:text="${userAccount.role.roleName}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Activo:</th>
+							<td class="table-info" th:text="${userAccount.active}"></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

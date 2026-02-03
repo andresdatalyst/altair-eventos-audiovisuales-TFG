@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+
+
+					<a sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"
+						th:href="@{/event/create}" class="btn btn-primary btx-xs">Crear
+						Evento</a>
+				</h4>
+
+			</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>Nombre Evento</th>
+						<th>Fecha Evento</th>
+						<th sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')">Editar</th>
+						<th sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')">Eliminar</th>
+						<th>Detalle</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="event: ${events}">
+						<td th:text="${event.eventName}"></td>
+						<td th:text="${event.eventDate}"></td>
+						<td sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"><a
+							class="btn btn-primary btn-xs"
+							th:href="@{/event/edit/} + ${event.id}">Editar Evento</a></td>
+						<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+						<td sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"><a
+							class="btn btn-danger btn-xs"
+							th:href="@{/event/delete/} + ${event.id}"
+							onclick="return confirm('Estás seguro que quieres eliminar el event?.');">Eliminar
+								Evento</a></td>
+						<td><a class="btn btn-success btn-xs"
+							th:href="@{/event/detail/} + ${event.id}">Detalle Evento</a></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

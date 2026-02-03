@@ -1,0 +1,174 @@
+ALTAIR
+EVENTOS
+
+Desarrollado con Spring
+
+Realizado por
+Andrés Pérez
+Rovira
+
+OBJETIVOS
+
+INTRODUCCIÓN
+
+Después de años trabajando en el sector
+audivisual he visto la necesidad de realizar
+una aplicación enfocada en la organización
+de eventos audiovisuales. 
+
+TECNOLOGÍAS
+EMPLEADAS
+
+Framework Spring
+
+IDE Spring Tool Suite 4
+
+Spring Boot
+
+Spring MVC
+
+Vistas Thymeleaf
+
+Spring Security
+
+Spring Data JPA e Hibernate
+
+Bootstrap 4
+
+AWS
+
+DIAGRAMA
+
+ROLES
+
+Administrador
+
+Productor
+
+Usuario que tendrá total
+
+Usuario capaz de crear eventos, organizar
+
+control sobre la aplicación.
+
+materiales y localizaciones, y total control
+
+sobre las empresas trabajadoras.
+
+Trabajador
+
+Usuario que sólo podrá ver
+
+su perfil y los eventos que
+
+asistirá.
+
+Jefe de la empresa
+trabajadora
+Usuario capaz de ver los datos de su
+
+empresa, ver sus trabajadores y poder tener
+
+control sobre ambas.
+
+CARACTERÍSTICAS DEL PROYECTO
+
+PAGINACIÓN
+
+ERRORES
+PERSONALIZADOS
+
+FILTROS DE SEGURIDAD
+
+SUBIDAD DE IMÁGENES
+FÍSICAS AL SERVIDOR
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+MENSAJES AL USUARIO A
+TRAVÉS DE FLASH
+ATTRIBUTES
+
+SCRIPT MYSQL PARA
+IMPORTACIÓN DE
+DATOS
+
+ENCRIPTACIÓN DE
+CONTRASEÑAS
+
+CREACIÓN DE UN
+LAYOUT Y ESQUELETO
+COMÚN PARA LAS
+VISTAS DEL PROYECTO
+(FRAGMENT)
+
+PLANIFICACIÓN
+
+FASE 1
+
+FASE 2
+
+FASE 3
+
+FASE 4
+
+FASE 5
+
+Búsqueda de
+información
+sobre el
+framework a
+trabajar en el
+proyecto.
+
+Realización de
+documentación
+previa y
+diagrama., para
+la aceptación
+del proyecto.
+
+Prepación del
+entorno de
+desarrollo.
+
+Diseño personal
+al proyecto.
+
+Funcionalidades.
+
+Despliegue en
+el servidor y
+retoques finales.
+
+1.Creación de los
+modelos.
+
+Testeo.
+
+2.Creación de los
+Controladores.
+
+3.Creación de las
+vistas.
+
+GRACIAS
+
+Por
+Andres Pérez Rovira
+
+

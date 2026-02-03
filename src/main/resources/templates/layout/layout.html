@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!-- necesario para seguridad -->
+<head th:fragment="head">
+<!-- Con fragment podemos utilizar trozos de código en distintas vistas, para usarlos en esas vistas = th:replace -->
+<meta charset="UTF-8" />
+<title th:text="' Spring Boot: MVC + Thymeleaf + Data JPA' + ${titulo}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
+<!-- LOS SCRIPT ME HAN FUNCIONADO ARRIBA -->
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
+<!--   <script th:src="@{/js/popper.min.js}"></script>-->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+
+
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="@{/}">Home</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+
+
+						<li class="nav-item"><a
+							sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-link"
+							th:href="@{/menu/listAll}"> Menus</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-link"
+							th:href="@{/role/listAll}"> Roles</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"
+							class="nav-link" th:href="@{/audiovisualMaterial/listAll}">
+								Materiales Audiovisuales</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"
+							class="nav-link" th:href="@{/location/listAll}">
+								Localizaciones</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"
+							class="nav-link" th:href="@{/producer/listAll}"> Productores</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER','ROLE_BOSS')"
+							class="nav-link" th:href="@{/hardworkingCompany/listAll}">
+								Empresas Trabajadoras</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_WORKER')"
+							class="nav-link" th:href="@{/worker/listAll}"> Trabajadores</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-link"
+							th:href="@{/admin/listAll}"> Admins</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-link"
+							th:href="@{/userAccount/listAll}"> UserAccounts</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-link"
+							th:href="@{/roleHasMenu/listAll}"> RoleHasMenu</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER','ROLE_BOSS','ROLE_WORKER')"
+							class="nav-link" th:href="@{/event/listAll}"> Events</a></li>
+						<li class="nav-item"><a
+							sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_PRODUCER')"
+							class="nav-link" th:href="@{/eventHasMaterial/listAll}">
+								EventHasMaterials</a></li>
+
+					</ul>
+					<ul class="navbar-nav navbar-right">
+						<li sec:authorize="!isAuthenticated()"><a
+							class="btn btn-outline-primary" th:href="@{/login}">Sign In</a></li>
+
+						<li sec:authorize="isAuthenticated()"><a
+							class="btn btn-outline-primary" th:href="@{/userAccount/perfil}">Perfil</a></li>
+
+						<li sec:authorize="isAuthenticated()" class="dropdown show">
+							<a class="btn btn-outline-primary dropdown-toggle" href="#"
+							role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"><span
+								sec:authentication="name"></span> </a>
+
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								<form id="logoutForm" th:action="@{/logout}" method="post">
+									<button class="dropdown-item"
+										onclick="document.getElementById('logoutForm').submit();"
+										type="submit">Out</button>
+
+								</form>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<!-- Mensaje de alerta de tipo flash, dura hasta la siguiente peticion http -->
+		<div class="alert alert-success" th:if="${success !=null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error !=null}"
+			th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning !=null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info !=null}" th:text="${info}"></div>
+	</header>
+
+	<footer th:fragment="footer" class="container"
+		style="text-align: center;">
+		<img th:src="@{/img/springLogo.png}" alt="Spring Logo">
+		<p>Este Proyecto esta siendo desarrollado por Andrés Pérez</p>
+		<!--  <p sec:authorize="isAuthenticated()">
+			Usuario logeado: <span sec:authentication="name"></span> | Roles: <span
+				sec:authentication="principal.authorities"></span>
+
+		</p>-->
+		<!--  <script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	 <script th:src="@{/js/jquery-3.6.0.js}"></script>	
+	<script th:src="@{/js/jquery-ui.js}"></script>-->
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Bootstrap JS -->
+
+
+	</footer>
+
+
+
+</body>
+</html>

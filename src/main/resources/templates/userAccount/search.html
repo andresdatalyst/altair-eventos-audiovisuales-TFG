@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<!-- Hace referencia al nombre que queremos poner de la plantilla(layout) poniendo la ruta/nombre archivo :: nombre del fragment -->
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+
+					<!-- sec:authorize="hasRole('ROLE_ADMIN')" solo se muestra el botón si es Admin -->
+					<a th:href="@{/userAccount/create}" class="btn btn-primary btx-xs">Crear
+						UserAccount</a>
+				</h4>
+
+			</div>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>Nombre Cuenta</th>
+						<th>Email</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+						<th>Detalle</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="userAccount: ${userAccounts}">
+
+						<td th:text="${userAccount.username}"></td>
+						<td th:text="${userAccount.email}"></td>
+						<td><a class="btn btn-primary btn-xs"
+							th:href="@{/userAccount/edit/} + ${userAccount.id}">Editar
+								UserAccount</a></td>
+						<!-- IMPORTANTE PARA CONFIRMAR BORRADO DE UN CAMPO -->
+						<td><a class="btn btn-danger btn-xs"
+							th:if="${userAccount.username != 'superAdmin'}"
+							th:href="@{/userAccount/delete/} + ${userAccount.id}"
+							onclick="return confirm('Estás seguro que quieres eliminar el userAccount?.');">Eliminar
+								UserAccount</a></td>
+						<td><a class="btn btn-success btn-xs"
+							th:href="@{/userAccount/detail/} + ${userAccount.id}">Detalle
+								UserAccount</a></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+
+				<!-- <ul class="list-group">
+					
+					<li class="list-group-item" th:text=" ${worker.name}"></li>
+					<li class="list-group-item" th:text="${worker.surname}"></li>	
+					<li class="list-group-item" th:text="${worker.phone}"></li>		
+					<li class="list-group-item" th:text="${worker.birthday}"></li>		
+					<li class="list-group-item" th:text="${worker.category}"></li>	
+						<li class="list-group-item" th:text="${worker.hardworkingCompany.name}"></li>								
+				</ul> -->
+				<table class="table table-bordered border-dark">
+
+					<tbody>
+
+
+						<tr>
+							<th class="w-25 text-center table-success">Nombre:</th>
+							<td class="table-info" th:text="${worker.name}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Apellidos:</th>
+							<td class="table-info" th:text="${worker.surname}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Telefono:</th>
+							<td class="table-info" th:text="${worker.phone}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Fecha de
+								Nacimiento:</th>
+							<td class="table-info" th:text="${worker.birthday}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">DNI:</th>
+							<td class="table-info" th:text="${worker.dni}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Categoria
+								profesional:</th>
+							<td class="table-info" th:text="${worker.category}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Empresa a la que
+								pertenece:</th>
+							<td class="table-info"
+								th:text="${worker.hardworkingCompany.name}"></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

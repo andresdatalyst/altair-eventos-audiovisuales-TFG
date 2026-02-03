@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+
+
+
+				<table class="table table-bordered border-dark">
+
+					<tbody>
+
+
+						<tr>
+							<th class="w-25 text-center table-success">Nombre del
+								Evento:</th>
+							<td class="table-info"
+								th:text="${eventHasMaterial.event.eventName}"></td>
+						</tr>
+						<tr>
+							<th class="w-25 text-center table-success">Nombre del
+								Material:</th>
+							<td class="table-info"
+								th:text="${eventHasMaterial.audiovisualMaterial.materialName}"></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
