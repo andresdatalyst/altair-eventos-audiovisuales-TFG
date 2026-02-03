@@ -74,17 +74,6 @@ mvn spring-boot:run
 
 ---
 
-## 🗃️ Configuración de la base de datos
-- El archivo `src/main/resources/application.properties` contiene propiedades de conexión a la base de datos. **No** almacenes credenciales en el repositorio en entornos públicos.
-
-Recomendación: usar variables de entorno y perfil `application-prod.properties`:
-
-```properties
-# ejemplo (NO subir al repo)
-spring.datasource.url=jdbc:mysql://<HOST>:3306/<DB_NAME>
-spring.datasource.username=${DB_USER}
-spring.datasource.password=${DB_PASS}
-```
 
 - El proyecto incluye `src/main/resources/import.sql` para importar datos iniciales.
 
@@ -112,13 +101,8 @@ spring.datasource.password=${DB_PASS}
 ---
 
 ## 📚 Documentación y recursos
-- Manual de usuario, memoria y presentación se encuentran extraídos en `docs/`.
+- Manual de usuario, memoria y presentación se encuentran en los correspondientes pdf`.
 - Para crear usuarios y datos de prueba, revisa `src/main/resources/import.sql`.
-
----
-
-## 📝 Licencia
-- Por defecto incluido: **MIT License**. Si prefieres otra licencia, indícalo y la actualizo.
 
 ---
 
@@ -127,8 +111,8 @@ spring.datasource.password=${DB_PASS}
 
 ---
 
-**Contacto:** Andrés Pérez — (modifica según prefieras añadir email o enlace a tu portfolio)
+**Contacto:** Andrés Pérez 
 
----
 
-_Archivo generado automáticamente con la información disponible en el repositorio y los documentos del proyecto._
+
+
